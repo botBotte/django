@@ -17,10 +17,12 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import landingview, productview, suppliersview
+from .views import landingview, productview, suppliersview, addsupplierview, addproduct
 
 urlpatterns = [
     path('', landingview),
     path('products', productview),
-    path('suppliers', suppliersview)
+    path('add-product/', addproduct),
+    path('suppliers', suppliersview),
+    path('add-supplier/', addsupplierview)
 ]

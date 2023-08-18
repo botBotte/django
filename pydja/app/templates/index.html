@@ -1,11 +1,16 @@
+{% load static  %}
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto&display=swap" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -13,18 +18,20 @@
 
     <title>Pydja</title>
 </head>
-<body>
+
+<body class="bg-secondary" style="font-family: 'Caprasimo', cursive; font-family: 'Roboto', sans-serif;">
     
     <div class="container" style="padding: 3px;">
 
         <center>
 
             <div class="btn-group" role="group">
-                <a class="btn btn-secondary btn-lg" href="/suppliers">Manage suppliers</a>
-                <a class="btn btn-secondary btn-lg" href="/products">Manage products</a>
-                <a class="btn btn-secondary btn-lg" href="http://careeria.fi">Recruit code professionals</a>
-                <a class="btn btn-secondary btn-lg" href="/admin">Admin pages</a>
-                <a class="btn btn-secondary btn-lg">Logout</a>
+                <a style="border-radius: 10px;" class="btn btn-success btn-lg mx-3" href="/">Business Logo</a>
+                <a style="border-radius: 10px;" class="btn btn-outline-dark btn-lg mx-1" href="/suppliers">Manage suppliers</a>
+                <a style="border-radius: 10px;" class="btn btn-outline-dark btn-lg mx-1" href="/products">Manage products</a>
+                <a style="border-radius: 10px;" class="btn btn-outline-dark btn-lg mx-1" href="http://careeria.fi">Careeria</a>
+                <a style="border-radius: 10px;" class="btn btn-outline-dark btn-lg mx-1" href="/admin">Admin pages</a>
+                <a style="border-radius: 10px;" class="btn btn-outline-dark btn-lg mx-1">Logout</a>
             </div>
               
               

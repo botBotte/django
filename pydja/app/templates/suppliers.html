@@ -2,6 +2,66 @@
 
 {% block content %}
 
-<h1>Manage suppliers</h1>
+<div id="add-div" class="bg-secondary"></div>
+
+<h1 class="my-5" style="text-decoration: underline;">Suppliers</h1>
+
+<button id="add-btn" class="btn btn-success btn-md mb-3" style="border-radius: 10px;" onclick="showaddform()">Add new supplier</button>
+
+{% for s in suppliers%}
+
+<div class="card mb-3" style="width: 30rem;">
+    <div class="card-body">
+        <h4 class="card-title">{{s.companyname}}</h4>
+        <p class="card-text">{{s.contactname}} | Phone: {{s.phone}}</p>
+        <p class="card-text">Email: {{s.email}}</p>
+        <p class="card-text">Address: {{s.email}} | Country: {{s.country}}</p>
+        <a href="/edit-supplier-get/{{s.id}}/" class="btn btn-outline-dark">Edit</a>
+        <a href="/confirm-delete-supplier/{{s.id}}/" class="btn btn-outline-danger">DELETE</a>
+        <a href="/products-by-supplier/{{s.id}}/" class="btn btn-outline-dark">{{s.contactname}} Products</a>
+    </div>
+</div>
+
+{% empty %}
+
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <p class="card-text">No suppliers found in the database </p>
+    </div>
+</div>
+
+{% endfor %}
+
+<script>
+    let x = `
+    <h2 class="my-3">Please fill in form!</h2>
+    
+    <div class="card" style="width: 20rem;">
+        <div class="card-body">
+
+            <form method="post" action="/add-supplier/">   
+                {% csrf_token %}
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Company´s name" name="companyname">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Contact person" name="ontactname">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Address" name="address">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Phone" name="phone">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Email" name="email">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Country" name="country">
+                <br/>
+                <input type="submit" value="Confirm" class="btn btn-success btn-sm" name="">
+                <input type="submit" id="hide-btn" class="btn btn-secondary btn-sm" onclick="hideaddform()" value="Cancel" name="">
+            </form>
+
+        </div>
+    </div>`
+
+function showaddform() {
+    document.getElementById("add-div").innerHTML = x
+}
+
+function hideaddform() {
+    document.getElementById("add-div").innerHTML = ""
+}
+</script>
 
 {% endblock %}

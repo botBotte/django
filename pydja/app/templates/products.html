@@ -1,0 +1,74 @@
+{% extends 'index.html'%}
+
+{% block content %}
+
+<div id="add-div"></div>
+
+<h1 class="my-5" style="text-decoration: underline;">Products</h1>
+
+<button id="add-btn" class="btn btn-success btn-md mb-3" style="border-radius: 10px;" onclick="showaddform()">Add product</button>
+
+
+{% for p in products %}
+
+<div class="card mb-3 bg-secondary" style="width: 30rem;">
+    <div class="card-body">
+        <h4 class="card-title">{{p.productname}}</h4>
+        <h5 class="card-text">Supplier: {{p.supplier.companyname}}</h5>
+        <p class="card-text">Package size: {{p.packagesize}} | Price per unit: {{p.unitprice}}</p>
+        <p class="card-text" style="color: aqua;">Units in stock: {{p.unitsinstock}}</p>
+        <a href="/edit-product-get/{{p.id}}/" class="btn btn-outline-dark">Edit</a>
+        <a href="/confirm-delete-product/{{p.id}}/" class="btn btn-outline-danger">DELETE</a>
+        <a href="/products-by-supplier/{{p.supplier.id}}/" class="btn btn-outline-dark">{{p.supplier.companyname}}´s all Products</a>
+    </div>
+</div>
+
+{% empty %}
+
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <p class="card-text">No products found in the database </p>
+    </div>
+</div>
+
+{% endfor %}
+
+
+<script>
+
+    let y = `
+    <h2 class="my-3">Please fill in form</h2>
+    
+    <div class="card" style="width: 20rem;">
+        <div class="card-body">
+            <form method="post" action="/add-product/">
+                {%csrf_token %}
+                <input class="card-text mb-1" class="card-text" type="text" style="border-radius: 5px;" placeholder="Product name" name="productname">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Package size" name="packagesize">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Unitprice" name="unitprice">
+                <input class="card-text mb-1" type="text" style="border-radius: 5px;" placeholder="Units in stock or 0" name="unitsinstock">
+                <br />
+                <label for="supplier">Supplier</label>
+                <select id="supplier" name="supplier">
+                {% for s in suppliers %}
+                  <option value="{{s.id}}">{{s.companyname}}</option>
+                  {% endfor %}
+                </select>
+
+                <br/>
+                <input type="submit" value="Confirm" class="btn btn-success btn-sm mt-1" name="">
+                <input type="submit" id="hide-btn" class="btn btn-secondary btn-sm mt-1" onclick="hideaddform()" value="Cancel" name="">
+            </form>
+        </div>
+    </div>`
+
+    function showaddform() {
+        document.getElementById("add-div").innerHTML = y
+    }
+
+    function hideaddform() {
+        document.getElementById("add-div").innerHTML = ""
+    }
+
+</script>
+{% endblock %}
